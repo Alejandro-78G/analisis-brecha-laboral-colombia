@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_vacantes
+    description: "Modelo staging de vacantes laborales procesadas y normalizadas."
+    columns:
+      - name: id_vacante
+        tests:
+          - not_null
+      - name: municipio
+        tests:
+          - not_null
+
+  - name: dim_municipio
+    description: "Dimensión geográfica con regiones de Colombia."
+    columns:
+      - name: sk_municipio
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_vacantes
+    description: "Tabla de Hechos de vacantes laborales para analítica de empleabilidad."
+    columns:
+      - name: id_vacante
+        tests:
+          - unique
+          - not_null
+      - name: salario_promedio
+        tests:
+          - not_null

@@ -1,0 +1,23 @@
+name: 'brecha_laboral_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'brecha_laboral_profile'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  brecha_laboral_dbt:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

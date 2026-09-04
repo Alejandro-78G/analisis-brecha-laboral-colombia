@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  analytics_app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: brecha_laboral_analytics
+    ports:
+      - "8501:8501"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    volumes:
+      - ../data:/app/data
+    restart: unless-stopped

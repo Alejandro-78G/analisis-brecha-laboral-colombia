@@ -1,0 +1,9 @@
+brecha_laboral_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'c:/Repositorio_Python/Proyectos_Mecadeo/analisis_brecha_laboral/data/brecha_laboral.duckdb'
+      threads: 4
+
+

@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Environment Variables
+.env
+
+# Data Files & Databases (Ignorar archivos binarios de DuckDB grandes)
+data/*.duckdb
+data/*.duckdb.tmp
+
+# dbt Artifacts
+target/
+dbt_packages/
+logs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Testing
+.pytest_cache/
+.coverage

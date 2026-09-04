@@ -1,0 +1,37 @@
+name: CI Data Pipeline & Quality Checks
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Run Pytest Unit Tests
+        run: |
+          pytest tests/
+
+      - name: Run Pipeline Ingestion
+        run: |
+          python -m src.main
+
+      - name: Run dbt Transformations & Data Tests
+        run: |
+          python -m dbt.cli.main run --project-dir dbt_project --profiles-dir dbt_project
+          python -m dbt.cli.main test --project-dir dbt_project --profiles-dir dbt_project
