@@ -3,7 +3,8 @@ brecha_laboral_profile:
   outputs:
     dev:
       type: duckdb
-      path: 'c:/Repositorio_Python/Proyectos_Mecadeo/analisis_brecha_laboral/data/brecha_laboral.duckdb'
+      path: "{{ env_var('DUCKDB_PATH', 'data/brecha_laboral.duckdb') }}"
       threads: 4
+
 
 
